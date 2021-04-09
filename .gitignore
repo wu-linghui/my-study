@@ -1,0 +1,15 @@
+node_modules/
+npm-debug.log
+*.idea
+bower_components/
+/dist/
+*.DS_Store
+.phpintel
+sls-admin.html
+*.map
+test/unit/coverage/
+.vscode/
+yarn-error.log
+yarn.lock
+docs
+package-lock.json
