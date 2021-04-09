@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js</title>
+</head>
+<body>
+    <script>
+        var a = {
+            value: 0,
+            valueOf: function() {
+                this.value++;
+                return this.value;
+            }
+        };
+        console.log(a.value);
+        console.log(a.valueOf);
+        console.log(a === 1);
+
+        var _b = 1;
+        // console.log(b);
+        Object.defineProperty(this, 'b', {
+            get () {
+                return this._b++;
+            }
+        });
+        console.log(b);
+        console.log(b === 2);
+        console.log(b);
+
+        class Person {
+        constructor(name) {
+                this.name = name;
+            }
+            // 复写 valueOf 方法
+            valueOf() {
+                return this.name;
+            }
+        }
+
+
+        let arr = [
+            { name: 'book', number: 10 },
+            { name: 'paper', number: 10 },
+            { name: 'ruber', number: 10 },
+            { name: 'book', number: 20 },
+            { name: 'paper', number: 40 },
+            { name: 'ruber', number: 50 },
+            { name: 'book', number: 70 },
+            { name: 'paper', number: 80 },
+            { name: 'ruber', number: 90 },
+        ];
+        // let newArr = [
+        //     { name: 'book', value: [10, 20, 70] },
+        //     { name: 'ruber', value: [10, 40, 80] },
+        //     { name: 'paper', value: [10, 50, 90] },
+        // ];
+
+        let newArr = arr.reduce((ret, {name, number}) => {
+            // console.log('ret1', ret);
+            console.table('ret1[name]', ret[name]);
+            console.table('value', (ret[name] = ret[name] || {
+                name: name,
+                value: []
+            }));
+            // return;
+            (ret[name] = ret[name] || {
+                name: name,
+                value: []
+            }).value.push(number);
+            // console.table('ret2[name]', ret[name]);
+            // console.log('ret', ret);
+            return ret;
+        },{})
+        console.log(Object.values(newArr));
+        // test
+        // test2
+        // test3
+    </script>
+</body>
+</html>

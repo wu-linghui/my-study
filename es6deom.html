@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let m = 5;
+        let n = 3;
+
+        function fn(m, n) {
+            console.log(m)
+            return m ? fn(m - 1, n).concat(n) : [];
+        }
+        // fn(m,n);
+        console.log(fn(m, n))
+        // console.log(m);
+        // console.log(n);
+    </script>
+
+
+<p>点击按钮计算数组元素相加后的总和。</p>
+<button onclick="myFunction()">点我</button>
+
+<p>数组元素总和: <span id="demo"></span></p>
+
+
+
+    <script>
+        var numbers = [65, 44, 12, 4];
+
+        var getSum= function (total, num) {
+            console.log(num);
+            console.log(total);
+            return total + num;
+        }
+
+        function myFunction(item) {
+            document.getElementById("demo").innerHTML = numbers.reduce(function(total,num){
+                return total+num;
+            });
+            console.log(item);
+        }
+    </script>
+</body>
+
+</html>

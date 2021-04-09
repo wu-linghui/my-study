@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订阅者模式</title>
+</head>
+<body>
+    <script>
+        let events = {
+            _events: [],
+            on(fn) {
+                this._events.push(fn);
+            },
+            emit(data) {
+                this._events.forEach((event) => {
+                    event(data);
+                });
+            }
+        };
+
+        setTimeout(() => {
+            events.emit('1');
+            console.log('one');
+        },1000);
+
+        setTimeout(() => {
+            events.emit('2');
+            console.log('tow');
+        },2000);
+
+        let num = 0;
+        events.on((data) => {
+            arr.push(data);
+            console.log(data);
+            console.log(events._events)
+            console.log(events._events[num])
+            num++;
+        })
+
+        let arr = [];
+        events.on(() => {
+            if (arr.length === 2) {
+                console.log('end');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 数组交集
+        const arr1 = [1, 2, 3, 4, 5, 8, 9], arr2 = [5, 6, 7, 8, 9];
+        const intersection = arr1.filter((val) => { return arr2.indexOf(val) > -1; /*console.log(val)*/ })
+        console.log(intersection);
+        // console.log(typeof intersection);
+        // console.log(typeof arr1);
+    </script>
+
+    <script>
+        //数组并集
+        let arr3 = [1, 2, 3, 4, 5, 8, 9], arr4 = [5, 6, 7, 8, 9];
+        let result = arr3.concat(arr4.filter(v => !arr3.includes(v)))
+        console.log(result);//[1,2,3,4,5,8,9,6,7]
+
+    </script>
+
+
+    <script>
+        //数组差集
+        let arr5 = [1, 2, 3, 4, 5, 8, 9], arr6 = [5, 6, 7, 8, 9];
+        let diff = arr5.filter(item => !new Set(arr6).has(item))
+        const diff1 = arr5.filter(item1 => !arr6.includes(item1))
+        console.log(diff);//
+        console.log(diff1);
+
+    </script>
+
+
+    <script>
+        //数组补集
+        //两个数组各自没有的集合
+        let arr7 = [1, 2, 3, 4, 5, 8, 9], arr8 = [5, 6, 7, 8, 9];
+        let diff2 = Array.from(new Set(arr7.concat(arr8).filter(i1 => !new Set(arr7).has(i1) || !new Set(arr8).has(i1))))
+
+        console.log(diff2);//123467
+
+    </script>
+
+    <script>
+        //数组升降序
+        const ar1 = [{ name: "Rom", age: 12 }, { name: "Bob", age: 22 }].sort((a, b) => { return a.age - b.age })//升序
+        const ar2 = [{ name: "Rom", age: 12 }, { name: "Bob", age: 22 }].sort((a, b) => { return b.age - a.age })//降序
+        console.log(ar1) // [ { name: 'Rom', age: 12 }, { name: 'Bob', age: 22 } ]
+        console.log(ar2) // [{ name: 'Bob', age:22 }, { name: 'Rom', age: 12 }]
+
+    </script>
+    <script>
+        //数组求和
+        let arr9 = [1, 2, 3, 4].reduce(function (prev, cur) {
+            return prev + cur;
+        }, 0)
+        console.log(arr9);
+    </script>
+
+
+    <script>
+        // 浅拷贝
+        let obj1 = {
+            name: '浪里行舟',
+            arr: [1, [2, 3], 4],
+        };
+        let obj3 = shallowClone(obj1)
+        obj3.name = "阿浪";
+        obj3.arr[1] = [5, 6, 7]; // 新旧对象还是共享同一块内存
+        // 这是个浅拷贝的方法
+        function shallowClone(source) {
+            var target = {};
+            for (var i in source) {
+                console.log(i);
+                if (source.hasOwnProperty(i)) {
+                    console.log(i);
+                    target[i] = source[i];
+                }
+            }
+            return target;
+        }
+        console.log('obj1', obj1) // obj1 { name: '浪里行舟', arr: [ 1, [ 5, 6, 7 ], 4 ] }
+        console.log('obj3', obj3) // obj3 { name: '阿浪', arr: [ 1, [ 5, 6, 7 ], 4 ] }
+    </script>
+
+    <script>
+        // 深拷贝
+        let obj2 = {
+            name: '浪里行舟',
+            arr: [1, [2, 3], 4],
+        };
+        let obj4 = deepClone(obj1)
+        obj4.name = "阿浪";
+        obj4.arr[1] = [5, 6, 7]; // 新对象跟原对象不共享内存
+        // 这是个深拷贝的方法
+        function deepClone(obj) {
+            if (obj === null) return obj;
+            if (obj instanceof Date) return new Date(obj);
+            if (obj instanceof RegExp) return new RegExp(obj);
+            if (typeof obj !== "object") return obj;
+            let cloneObj = new obj.constructor();
+            console.log(cloneObj);
+            for (let key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    console.log(key);
+                    // 实现一个递归拷贝
+                    cloneObj[key] = deepClone(obj[key]);
+                    console.log(cloneObj[key]);
+                    console.log(deepClone(obj[key]));
+                }
+            }
+            return cloneObj;
+        }
+        console.log('obj1', obj1) // obj1 { name: '浪里行舟', arr: [ 1, [ 2, 3 ], 4 ] }
+        console.log('obj4', obj4) // obj4 { name: '阿浪', arr: [ 1, [ 5, 6, 7 ], 4 ] }
+    </script>
+</body>
+
+</html>
