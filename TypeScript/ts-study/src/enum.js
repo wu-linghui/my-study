@@ -21,7 +21,7 @@ var Direction2;
     Direction2[Direction2["Right"] = 13] = "Right";
 })(Direction2 || (Direction2 = {}));
 // 10 11 12 13
-console.log(Direction.Up, Direction.Down, Direction.Left, Direction.Right);
+console.log(Direction2.Up, Direction2.Down, Direction2.Left, Direction2.Right);
 // 字符串枚举类型
 var DirectionStr;
 (function (DirectionStr) {
@@ -64,3 +64,6 @@ f = 100;
 (function (Animal) {
     Animal["newAnimal"] = "fish";
 })(Animal || (Animal = {}));
+cf = 0;
+cf = Animal.newAnimal;
+// cf = 'fish'

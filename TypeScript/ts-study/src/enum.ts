@@ -21,7 +21,7 @@ enum Direction2 {
     Right
 }
 // 10 11 12 13
-console.log(Direction.Up, Direction.Down, Direction.Left, Direction.Right);
+console.log(Direction2.Up, Direction2.Down, Direction2.Left, Direction2.Right);
 
 // 字符串枚举类型
 enum DirectionStr {
@@ -88,4 +88,8 @@ enum Animal {
     newAnimal = 'fish'
 }
 
+declare let cf: Animal;
+cf = 0;
+cf = Animal.newAnimal;
+// cf = 'fish'
 
