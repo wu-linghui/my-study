@@ -56,3 +56,4 @@ function getFX(key) {
 }
 const CAT = getFX('tom');
 CAT.run();
+const person = 'xiaomuzhu'; // ok

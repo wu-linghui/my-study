@@ -99,3 +99,15 @@ interface Cat3 {
 const CAT = getFX<Cat3> ('tom');
 
 CAT.run();
+
+
+// 通过any，类型断言
+interface Person {
+	name: string;
+	age: number;
+}
+
+const person = 'xiaomuzhu' as any as Person; // ok
+
+
+
