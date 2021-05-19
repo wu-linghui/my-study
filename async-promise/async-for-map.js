@@ -12,7 +12,7 @@ async function getZhihuColumn(id) {
 const showColumnInfo = async () => {
     const names = ['feweekly', 'toolingtips'];
     const promises = names.map(item => 
-        {return getZhihuColumn(item)} // 按照设计的步骤走
+        {return getZhihuColumn(item);} // 按照设计的步骤走
         // getZhihuColumn(item) // 按照设计的步骤走
         // {getZhihuColumn(item)} // 没有结果返回——undefined
         /* 
