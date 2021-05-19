@@ -15,6 +15,10 @@ const showColumnInfo = async () => {
         {return getZhihuColumn(item)} // 按照设计的步骤走
         // getZhihuColumn(item) // 按照设计的步骤走
         // {getZhihuColumn(item)} // 没有结果返回——undefined
+        /* 
+            调用的getZhihuColumn函数带有return把结果返回到map外
+            加了{}的getZhihuColumn函数自带的return没有把结果返回到map的箭头函数外
+         */
     );
     for (const promise of promises) {
         const column = await promise;
