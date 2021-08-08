@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>责任链模式——链表</title>
+</head>
+<body>
+    <script>
+        function order500 (orderType, isPay, count) {
+            if (orderType === 1 && isPay) {
+                console.log('order500');
+            } else {
+                return 'next';
+            }
+        }
+
+        function order200 (orderType, isPay, count) {
+            if (orderType === 2 && isPay) {
+                console.log('order200');
+            } else {
+                return 'next';
+            }
+        }
+
+        function order100 (orderType, isPay, count) {
+            if (orderType === 4 && isPay) {
+                console.log('order100');
+            } else {
+                return 'next';
+            }
+        }
+
+        function orderNormal (orderType, isPay, count) {
+            if (count > 0) {
+                console.log('orderNormal');
+            } else {
+                console.log('orderNormalElse')
+            }
+        }
+
+        class Chain {
+            constructor (fn) {
+                this.fn = fn;
+                this.next = null;
+            }
+
+            setNext (nextChain) {
+                this.next = nextChain;
+            }
+
+            passRequest () {
+                const res = this.fn.apply(this, arguments);
+                if (res === 'next') {
+                    console.log(this.next, this.next.passRequest, arguments)
+                    return this.next && this.next.passRequest.apply(this.next, arguments);
+                }
+                return res;
+            }
+        }
+
+        const chainOrder100 = new Chain(order100);
+        const chainOrder200 = new Chain(order200);
+        const chainOrder500 = new Chain(order500);
+        const chainOrderNormal = new Chain(orderNormal);
+
+        chainOrder500.setNext(chainOrder200);
+        chainOrder200.setNext(chainOrder100);
+        chainOrder100.setNext(chainOrderNormal);
+
+        chainOrder500.passRequest(1, true, 0);
+        chainOrder500.passRequest(2, false, 100);
+        chainOrder500.passRequest(2, true, 100);
+        chainOrder500.passRequest(4, false, 100);
+
+    </script>
+</body>
+</html>
